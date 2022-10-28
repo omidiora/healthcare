@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-   <div class="card">
+   <div class="card" style="height: 500px">
     <div class="row ">
         <div class="col-md-4 offset-md-2">
             <img  src="{{ asset('/profile_image/'.Auth::user()->photo) }}" 
@@ -38,7 +38,7 @@
                 <label for="matric_no" class="col-md-4 col-form-label text-md-end">{{ __('Date') }}</label>
 
                 <div class="col-md-6">
-                    {{\Carbon\Carbon::parse(Auth::user()->schedule_date)->toDateString()}}
+                   23-01-2022
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
                 <label for="matric_no" class="col-md-4 col-form-label text-md-end">{{ __('Time') }}</label>
 
                 <div class="col-md-6">
-                    {{\Carbon\Carbon::parse(Auth::user()->schedule_date)->format('g:i a')}}
+                   9.00am
                 </div>
             </div>
 
@@ -67,8 +67,13 @@
 
 
         </div>
+       <div class="container mr-auto" style="margin-left:800px">
+        <a class="btn btn-primary" href={{route("reschedule")}}>Re-schedule</a>
+       </div>
+
     </div>
 
+    
    </div>
 </div>
 @endsection

@@ -25,9 +25,14 @@ Route::post('/complete/profile', [App\Http\Controllers\HomeController::class, 'S
 Route::get('/all', [App\Http\Controllers\HomeController::class, 'all'])->name('all');
 Route::get('/student', [App\Http\Controllers\HomeController::class, 'student'])->name('student');
 Route::get('generate-pdf', [App\Http\Controllers\HomeController::class, 'generatePDF'])->name("generatePDF");
+Route::get('reschedule', [App\Http\Controllers\HomeController::class, 'reschedule'])->name("reschedule");
+Route::post('makereshdedule', [App\Http\Controllers\HomeController::class, 'makereshdedule'])->name("makereshdedule");
 
 
-Route::group(['prefix' => 'admin'], function () {
+// makereshdedule
+Route::group(['prefix' => 'admin', 'middleware' => "isAdmin"], function () {
+
+    Route::get('reschedule', [App\Http\Controllers\AdminController::class, 'reschedule'])->name("postreschedule");
     Route::get('user', [App\Http\Controllers\AdminController::class, 'index'])->name("personalProfile");
     Route::get('users', [App\Http\Controllers\AdminController::class, 'showDetails']);
     Route::get('date/{users:schedule_date}', [App\Http\Controllers\AdminController::class, 'printStudentDate']);

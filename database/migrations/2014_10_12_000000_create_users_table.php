@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('department');
             $table->string('phone')->nullable();
             $table->string('schedule_date')->nullable();
+            $table->string('user_type')->default(1);
             $table->string('schedule_time')->nullable();
             // schedule_time
             $table->string('photo')->nullable();

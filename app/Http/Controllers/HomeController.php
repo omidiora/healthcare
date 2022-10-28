@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'isAdmin']);
     }
 
     /**
@@ -27,9 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cats = DB::table('users')->distinct()->select('schedule_date',"email")->get();
+        $cats = DB::table('users')->distinct()->select('schedule_date', "email")->get();
 
-       
+
 
         return view('home');
     }
@@ -125,5 +125,28 @@ class HomeController extends Controller
 
 
 
-    
+
+
+    public function reschedule()
+    {
+        return view('admin.reschedule');
+    }
+
+
+    public function makereshdedule(Request $request)
+    {
+
+
+
+        $user = Auth::user()->id;
+
+        $page = User::find($user);
+
+        // Make sure you've got the Page model
+        if ($page) {
+            $page->schedule_date = $request->date;
+            $page->save();
+            return redirect('/student');
+        }
+    }
 }

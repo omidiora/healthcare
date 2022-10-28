@@ -29,7 +29,8 @@ class User extends Authenticatable
 
         "level",
         "compelete_profile",
-        "schedule_date"
+        "schedule_date",
+        "user_type"
 
 
     ];
