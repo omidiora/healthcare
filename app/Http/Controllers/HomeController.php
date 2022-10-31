@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'isAdmin']);
+        $this->middleware(['auth',]);
     }
 
     /**
@@ -148,5 +149,30 @@ class HomeController extends Controller
             $page->save();
             return redirect('/student');
         }
+    }
+
+
+    public function contact()
+    {
+
+        return view('contact');
+    }
+
+
+    public function saveContact(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'message' => 'required'
+        ]);
+
+        $spkAdmin = new Contact();
+        //On left field name in DB and on right field name in Form/view/request
+        $spkAdmin->name = $request->input('name');
+        $spkAdmin->email = $request->input('email');
+        $spkAdmin->message = $request->input('message');
+        $spkAdmin->save();
+        return redirect()->back()->with('message', 'We have recieved you message. Thank you');
     }
 }

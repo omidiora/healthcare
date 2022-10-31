@@ -71,6 +71,11 @@
         <a class="btn btn-primary" href={{route("reschedule")}}>Re-schedule</a>
        </div>
 
+
+       <div class="container mr-auto" style="margin-left:800px;margin-top:80px">
+        <a class="btn btn-success btn-lg" href={{route("generatePDF")}}>Print</a>
+       </div>
+
     </div>
 
     

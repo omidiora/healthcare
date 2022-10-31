@@ -27,6 +27,9 @@ Route::get('/student', [App\Http\Controllers\HomeController::class, 'student'])-
 Route::get('generate-pdf', [App\Http\Controllers\HomeController::class, 'generatePDF'])->name("generatePDF");
 Route::get('reschedule', [App\Http\Controllers\HomeController::class, 'reschedule'])->name("reschedule");
 Route::post('makereshdedule', [App\Http\Controllers\HomeController::class, 'makereshdedule'])->name("makereshdedule");
+Route::get('contact', [App\Http\Controllers\HomeController::class, 'contact'])->name("contact");
+Route::post('contact', [App\Http\Controllers\HomeController::class, 'saveContact'])->name("saveContact");
+
 
 
 // makereshdedule

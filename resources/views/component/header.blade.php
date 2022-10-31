@@ -52,16 +52,38 @@
 <nav id="navbar" class="navbar order-last order-lg-0">
     <ul>
       <li><a class="nav-link scrollto active" href="/">Home</a></li>
-      <li><a class="nav-link scrollto" href="/">About</a></li>
+     
       @if (!Auth::check())
       <li><a class="nav-link scrollto" href="/login">Login</a></li>
       @endif
+
+      @if (!Auth::check())
+      <li><a class="nav-link scrollto" href="/register">Register</a></li>
+      @endif
      
       <li><a class="nav-link scrollto" href="{{route("student")}}">Report Details</a></li>
-      
+      <li><a class="nav-link scrollto" href="{{route("contact")}}">Contact</a></li>
+     
+
+      <li>
+@if(Auth::check())
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+  @csrf
+</form>
+</li>
+
+<li>
+<a  class="btn btn-danger" type="submit" 
+href="{{ route('logout') }}"
+onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();" style="color:white">
+ {{ __('Logout') }}</a>
+</li>
+@endif
      
     </ul>
-    <i class="bi bi-list mobile-nav-toggle"></i>
+
   </nav>
 
 
